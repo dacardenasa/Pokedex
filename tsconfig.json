@@ -1,0 +1,17 @@
+{
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "strict": true,
+    // Path alias config
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*"],
+      "@assets": ["src/assets"],
+      "@components": ["src/components"],
+      "@hooks": ["src/hooks"],
+      "@screens": ["src/screens"],
+      "@services": ["src/services"],
+      "@utils": ["src/utils"]
+    }
+  }
+}
