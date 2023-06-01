@@ -1,10 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {TestScreen} from '@screens';
 
 const App = () => {
   return (
     <View style={styles.conatiner}>
       <Text style={styles.text}>Pokedex</Text>
+      <TestScreen />
     </View>
   );
 };
