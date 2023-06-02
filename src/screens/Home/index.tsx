@@ -1,6 +1,7 @@
-import {HomeProps} from '@interfaces';
 import React from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
+
+import {HomeProps} from '@interfaces';
 
 const Home = ({navigation}: HomeProps) => {
   return (
