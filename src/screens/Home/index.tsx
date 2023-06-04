@@ -1,31 +1,27 @@
 import React from 'react';
-import {Button, StyleSheet, Text, View} from 'react-native';
+import {Image, Text} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-import {HomeProps} from '@interfaces';
+import {globalStyles} from '@theme';
 
-const Home = ({navigation}: HomeProps) => {
+const Home = () => {
+  const {top} = useSafeAreaInsets();
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Pokedex Home</Text>
-      <Button
-        title={'ir al pokelistado'}
-        onPress={() => navigation.navigate('PokemonList')}
+    <>
+      <Image
+        source={require('@assets/pokebola.png')}
+        style={globalStyles.pokebolaBg}
       />
-    </View>
+      <Text
+        style={{
+          ...globalStyles.title,
+          ...globalStyles.globalMargin,
+          top: top + 20,
+        }}>
+        Pokedex Home
+      </Text>
+    </>
   );
 };
 
 export default Home;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 48,
-    color: 'black',
-    textAlign: 'center',
-  },
-});

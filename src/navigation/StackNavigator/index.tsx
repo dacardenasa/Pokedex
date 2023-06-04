@@ -11,21 +11,15 @@ const Stack = createStackNavigator<StackParamsList>();
 
 export const StackNavigator = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Home"
-        component={Home}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="PokemonList"
-        component={PokemonList}
-        options={{
-          headerShown: false,
-        }}
-      />
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        cardStyle: {
+          backgroundColor: 'white',
+        },
+      }}>
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="PokemonList" component={PokemonList} />
     </Stack.Navigator>
   );
 };
