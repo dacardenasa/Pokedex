@@ -1,1 +1,2 @@
-export * from './usePokemonsList';
+export * from './useAnimation';
+export * from './useImageColors';

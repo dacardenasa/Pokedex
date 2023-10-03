@@ -1,10 +1,11 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import {Home, PokemonList} from '@screens';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Home, PokemonDetail } from '@screens';
+import { IPokemon } from '@interfaces';
 
 export type StackParamsList = {
   Home: undefined;
-  PokemonList: undefined;
+  PokemonDetail: { pokemon: IPokemon };
 };
 
 const Stack = createStackNavigator<StackParamsList>();
@@ -17,9 +18,10 @@ export const StackNavigator = () => {
         cardStyle: {
           backgroundColor: 'white',
         },
-      }}>
+      }}
+    >
       <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="PokemonList" component={PokemonList} />
+      <Stack.Screen name="PokemonDetail" component={PokemonDetail} />
     </Stack.Navigator>
   );
 };
