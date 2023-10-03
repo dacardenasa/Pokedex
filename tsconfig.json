@@ -1,11 +1,13 @@
 {
   "extends": "@tsconfig/react-native/tsconfig.json",
+  "typeRoots": ["./src/types"],
   "compilerOptions": {
     "strict": true,
     // Path alias config
     "baseUrl": ".",
     "paths": {
       "*": ["src/*"],
+      "@adapters": ["src/adapters"],
       "@assets": ["src/assets"],
       "@components": ["src/components"],
       "@constants": ["src/constants"],
@@ -14,6 +16,7 @@
       "@navigation": ["src/navigation"],
       "@screens": ["src/screens"],
       "@services": ["src/services"],
+      "@theme": ["src/theme"],
       "@utils": ["src/utils"]
     }
   }

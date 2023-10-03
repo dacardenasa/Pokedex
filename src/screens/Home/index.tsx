@@ -1,31 +1,77 @@
 import React from 'react';
-import {Button, StyleSheet, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+} from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import {HomeProps} from '@interfaces';
+import { globalStyles } from '@theme';
+import { PokemonCard } from '@components';
 
-const Home = ({navigation}: HomeProps) => {
+import { usePokemonsList } from './usePokemonsList';
+
+const Home = () => {
+  const { isFetching, isError, pokemons, offSet, fetchMorePokemons } =
+    usePokemonsList();
+  const { top } = useSafeAreaInsets();
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Pokedex Home</Text>
-      <Button
-        title={'ir al pokelistado'}
-        onPress={() => navigation.navigate('PokemonList')}
+    <>
+      <Image
+        source={require('@assets/pokebola.png')}
+        style={globalStyles.pokebolaBg}
       />
-    </View>
+      {isFetching ? <Text>Loading pokemons list....</Text> : null}
+      <FlatList
+        data={pokemons}
+        contentContainerStyle={styles.pokemonListContainer}
+        renderItem={({ item }) => <PokemonCard pokemon={item} />}
+        keyExtractor={(item, index) => `${item}-${index}`}
+        onEndReachedThreshold={0.5}
+        onEndReached={() => (offSet > 0 ? fetchMorePokemons() : () => null)}
+        showsHorizontalScrollIndicator={false}
+        ListHeaderComponent={
+          <Text
+            style={{
+              ...globalStyles.title,
+              ...globalStyles.globalMargin,
+              top: top + 20,
+              marginBottom: top + 40,
+            }}
+          >
+            Pokedex
+          </Text>
+        }
+        numColumns={2}
+        ListFooterComponent={
+          <ActivityIndicator
+            style={styles.activitityIndicator}
+            size={20}
+            color={'gray'}
+          />
+        }
+      />
+      {isError ? (
+        <Text>There was an error getting pokemons list....</Text>
+      ) : null}
+    </>
   );
 };
 
-export default Home;
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
+  activitityIndicator: {
+    height: 100,
+  },
+  pokemonImg: {
+    width: 100,
+    height: 100,
+  },
+  pokemonListContainer: {
     alignItems: 'center',
   },
-  text: {
-    fontSize: 48,
-    color: 'black',
-    textAlign: 'center',
-  },
 });
+
+export default Home;
