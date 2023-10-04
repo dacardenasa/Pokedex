@@ -9,7 +9,7 @@ export const usePokemonsDetail = (pokemonId: string) => {
     {} as PokemonDetail,
   );
 
-  const { isError, isFetching } = useQuery(
+  const { isError, isFetching, refetch } = useQuery(
     ['pokemons-detail', pokemonId],
     PokemonService.fetchPokemonDetail,
     {
@@ -25,5 +25,6 @@ export const usePokemonsDetail = (pokemonId: string) => {
     isFetching,
     isError,
     pokemonDetails,
+    refetch,
   };
 };
