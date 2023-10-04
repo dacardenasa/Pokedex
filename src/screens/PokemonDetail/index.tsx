@@ -1,17 +1,11 @@
 import React from 'react';
-import {
-  ActivityIndicator,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-
-import { PokemonDetailProps } from '@interfaces';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ArrowLeft } from 'phosphor-react-native';
-import { FadeInImage, PokemonDetails } from 'components';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import { Error, FadeInImage, Loader, PokemonDetails } from '@components';
+import { PokemonDetailProps } from '@interfaces';
+
 import { usePokemonsDetail } from './usePokemonsDetail';
 
 const PokemonDetail = ({ route, navigation }: PokemonDetailProps) => {
@@ -20,14 +14,25 @@ const PokemonDetail = ({ route, navigation }: PokemonDetailProps) => {
   } = route.params;
   const { top } = useSafeAreaInsets();
 
-  const { isFetching, isError, pokemonDetails } = usePokemonsDetail(id);
+  const { isFetching, isError, pokemonDetails, refetch } =
+    usePokemonsDetail(id);
+
+  if (isError) {
+    return (
+      <Error
+        handlerFn={refetch}
+        buttonTitle={'Reintentar'}
+        description={'Hubo un error obteniendo los detalles'}
+      />
+    );
+  }
 
   return (
     <View style={styles.container}>
       <View style={{ ...styles.headerContainer, backgroundColor: color }}>
         <TouchableOpacity
           style={{ ...styles.backButton, top: top + 10 }}
-          onPress={() => navigation.pop()}
+          onPress={() => navigation.goBack()}
         >
           <ArrowLeft size={40} color={'white'} />
         </TouchableOpacity>
@@ -36,20 +41,19 @@ const PokemonDetail = ({ route, navigation }: PokemonDetailProps) => {
         </Text>
         <Image
           style={styles.pokeball}
-          source={require('../../assets/pokebola-blanca.png')}
+          source={require('@assets/pokebola-blanca.png')}
         />
         <FadeInImage uri={imageURL} style={styles.pokemonImage} />
       </View>
       {isFetching ? (
-        <ActivityIndicator
-          color={color}
+        <Loader
+          color={color ?? 'green'}
           size={50}
-          style={styles.activityIndicatorBox}
+          text={'Cargando detalles pokemon...'}
         />
       ) : (
         <PokemonDetails pokemon={pokemonDetails} />
       )}
-      {isError ? <Text>Error Loading pokemon details</Text> : null}
     </View>
   );
 };
