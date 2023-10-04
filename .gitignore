@@ -27,7 +27,7 @@ ios/.xcode.env.local
 build/
 .idea
 .gradle
-.expo
+.expo/
 local.properties
 *.iml
 *.hprof

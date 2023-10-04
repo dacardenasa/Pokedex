@@ -4,12 +4,13 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { BottomTabNavigator } from '@navigation';
 import { NavigationContainer } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { StyleSheet } from 'react-native';
 
 const queryClient = new QueryClient();
 
 const App = () => {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView style={styles.container}>
       <NavigationContainer>
         <QueryClientProvider client={queryClient}>
           <BottomTabNavigator />
@@ -20,3 +21,9 @@ const App = () => {
 };
 
 export default App;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

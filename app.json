@@ -1,5 +1,11 @@
 {
   "expo": {
-    "name": "pokedex"
+    "name": "pokedex",
+    "android": {
+      "package": "com.dacardenasa.pokedex"
+    },
+    "ios": {
+      "bundleIdentifier": "com.dacardenasa.pokedex"
+    }
   }
 }
