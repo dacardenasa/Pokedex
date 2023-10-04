@@ -5,6 +5,7 @@ import {
   Image,
   StyleSheet,
   Text,
+  View,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -29,7 +30,7 @@ const Home = () => {
   }
 
   return (
-    <>
+    <View>
       <Image
         source={require('@assets/pokebola.png')}
         style={globalStyles.pokebolaBg}
@@ -67,7 +68,7 @@ const Home = () => {
           }
         />
       )}
-    </>
+    </View>
   );
 };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import {
   FlatList,
   Image,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
@@ -13,6 +14,7 @@ import { Error, Loader, PokemonCard } from '@components';
 import { globalStyles } from '@theme';
 
 import { usePokemonsSearch } from './usePokemonSearch';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const PokemonSearch = () => {
   const {
@@ -23,6 +25,8 @@ const PokemonSearch = () => {
     onChangeText,
     refetch,
   } = usePokemonsSearch();
+
+  const { top } = useSafeAreaInsets();
 
   if (isError) {
     return (
@@ -44,7 +48,12 @@ const PokemonSearch = () => {
         source={require('@assets/pokebola.png')}
         style={globalStyles.pokebolaBg}
       />
-      <View style={styles.contentBox}>
+      <View
+        style={{
+          ...styles.contentBox,
+          top: Platform.OS === 'ios' ? top : top + 5,
+        }}
+      >
         <View style={styles.textFieldBox}>
           <TextInput
             style={styles.textField}
