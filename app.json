@@ -6,9 +6,6 @@
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "icon": "./src/assets/icon.png",
-    "runtimeVersion": {
-      "policy": "sdkVersion"
-    },
     "splash": {
       "image": "./src/assets/splash.png",
       "resizeMode": "contain",
@@ -23,6 +20,15 @@
     },
     "ios": {
       "bundleIdentifier": "com.dacardenasa.pokedex"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d27669c4-48dd-466a-8972-e9cd1daaedc9"
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/d27669c4-48dd-466a-8972-e9cd1daaedc9"
+    },
+    "runtimeVersion": "1.0.0"
   }
 }
