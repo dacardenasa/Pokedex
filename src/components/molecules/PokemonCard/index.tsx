@@ -22,12 +22,11 @@ const screenWidth = Dimensions.get('window').width;
 const PokemonCard = ({ pokemon }: IPokemonCardProps) => {
   const navigation = useNavigation<HomeProps['navigation']>();
   const imageColors = useImageColors(pokemon.imageURL);
-
   return (
     <TouchableOpacity
       onPress={() =>
         navigation.navigate('PokemonDetail', {
-          pokemon: { ...pokemon, color: imageColors?.background },
+          pokemon: { ...pokemon, color: imageColors.background },
         })
       }
       activeOpacity={0.9}
@@ -35,7 +34,7 @@ const PokemonCard = ({ pokemon }: IPokemonCardProps) => {
       <View
         style={{
           ...styles.cardContainer,
-          backgroundColor: imageColors?.background,
+          backgroundColor: imageColors.background,
         }}
       >
         <Text style={styles.pokemonName}>

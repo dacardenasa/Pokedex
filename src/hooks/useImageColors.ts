@@ -4,15 +4,12 @@ import { getColors } from 'react-native-image-colors';
 export const useImageColors = (imageUrl: string) => {
   const [imageColors, setImageColors] = useState<{
     background: string;
-    primary: string;
-    secondary: string;
-    detail: string;
-  } | null>(null);
+  }>({ background: '#808080' });
   const isMounted = useRef<boolean>(true);
 
   useEffect(() => {
     getColors(imageUrl, {
-      fallback: 'grey',
+      fallback: '#808080',
       cache: true,
       key: imageUrl,
     }).then(colors => {
@@ -22,17 +19,11 @@ export const useImageColors = (imageUrl: string) => {
       if (colors.platform === 'android') {
         setImageColors({
           background: colors.dominant,
-          primary: colors.average,
-          secondary: colors.vibrant,
-          detail: colors.darkVibrant,
         });
       }
       if (colors.platform === 'ios') {
         setImageColors({
           background: colors.background,
-          primary: colors.primary,
-          secondary: colors.secondary,
-          detail: colors.detail,
         });
       }
     });

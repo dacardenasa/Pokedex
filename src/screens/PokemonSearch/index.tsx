@@ -9,12 +9,12 @@ import {
   View,
 } from 'react-native';
 import { MagnifyingGlass } from 'phosphor-react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Error, Loader, PokemonCard } from '@components';
 import { globalStyles } from '@theme';
 
 import { usePokemonsSearch } from './usePokemonSearch';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const PokemonSearch = () => {
   const {
