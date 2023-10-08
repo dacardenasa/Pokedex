@@ -19,6 +19,10 @@ const Home = () => {
     usePokemonsList();
   const { top } = useSafeAreaInsets();
 
+  if (isFetching && !offSet) {
+    return <Loader color={'green'} size={50} text={'Cargando pokemons...'} />;
+  }
+
   if (isError) {
     return (
       <Error
@@ -35,39 +39,35 @@ const Home = () => {
         source={require('@assets/pokebola.png')}
         style={globalStyles.pokebolaBg}
       />
-      {isFetching && !offSet ? (
-        <Loader color={'green'} size={50} text={'Cargando pokemons...'} />
-      ) : (
-        <FlatList
-          data={pokemons}
-          contentContainerStyle={styles.pokemonListContainer}
-          renderItem={({ item }) => <PokemonCard pokemon={item} />}
-          keyExtractor={(item, index) => `${item}-${index}`}
-          onEndReachedThreshold={0.5}
-          onEndReached={() => (offSet > 0 ? fetchMorePokemons() : () => null)}
-          showsHorizontalScrollIndicator={false}
-          ListHeaderComponent={
-            <Text
-              style={{
-                ...globalStyles.title,
-                ...globalStyles.globalMargin,
-                top: top + 20,
-                marginBottom: top + 40,
-              }}
-            >
-              Pokedex
-            </Text>
-          }
-          numColumns={2}
-          ListFooterComponent={
-            <ActivityIndicator
-              style={styles.activitityIndicator}
-              size={20}
-              color={'gray'}
-            />
-          }
-        />
-      )}
+      <FlatList
+        data={pokemons}
+        contentContainerStyle={styles.pokemonListContainer}
+        renderItem={({ item }) => <PokemonCard pokemon={item} />}
+        keyExtractor={(item, index) => `${item}-${index}`}
+        onEndReachedThreshold={0.5}
+        onEndReached={() => (offSet > 0 ? fetchMorePokemons() : () => null)}
+        showsHorizontalScrollIndicator={false}
+        ListHeaderComponent={
+          <Text
+            style={{
+              ...globalStyles.title,
+              ...globalStyles.globalMargin,
+              top: top + 20,
+              marginBottom: top + 40,
+            }}
+          >
+            Pokedex
+          </Text>
+        }
+        numColumns={2}
+        ListFooterComponent={
+          <ActivityIndicator
+            style={styles.activitityIndicator}
+            size={20}
+            color={'gray'}
+          />
+        }
+      />
     </View>
   );
 };

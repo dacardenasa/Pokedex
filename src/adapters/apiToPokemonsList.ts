@@ -13,10 +13,11 @@ const transformPokemonsData = (pokemons: IPokemonSingle[]) => {
   const newPokemonsList: IPokemon[] = pokemons.map(
     ({ url, name }: IPokemonSingle) => {
       const pokemonId: string = url.slice(34, url.length - 1);
+      const imageURL: string = `${POKE_API_URL_IMAGE}/${pokemonId}.png`;
       return {
         id: pokemonId,
         name,
-        imageURL: `${POKE_API_URL_IMAGE}/${pokemonId}.png`,
+        imageURL,
         color: '',
       };
     },
