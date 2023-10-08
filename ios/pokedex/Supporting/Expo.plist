@@ -9,8 +9,8 @@
     <key>EXUpdatesLaunchWaitMs</key>
     <integer>0</integer>
     <key>EXUpdatesRuntimeVersion</key>
-    <string>exposdk:48.0.0</string>
+    <string>1.0.0</string>
     <key>EXUpdatesURL</key>
-    <string>https://exp.host/@dacardenasa/pokedex-app</string>
+    <string>https://u.expo.dev/d27669c4-48dd-466a-8972-e9cd1daaedc9</string>
   </dict>
 </plist>
