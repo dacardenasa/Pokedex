@@ -1,4 +1,4 @@
 declare module '@env' {
-  export const POKE_API_URL: string;
-  export const POKE_API_URL_IMAGE: string;
+  export const EXPO_PUBLIC_POKE_API_URL: string;
+  export const EXPO_PUBLIC_POKE_API_URL_IMAGE: string;
 }
